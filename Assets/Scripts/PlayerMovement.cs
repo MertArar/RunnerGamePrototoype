@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rigidbody;
+    private int next_x_pos;
+    private bool Left, Right;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,35 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.W))
         {
             animator.SetBool("Jump", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
+                animator.SetBool("Right", true);
+            else 
+                Right = true;
+                
+            if (rigidbody.position.x >= -3 && rigidbody.position.x < -1)
+            {
+                next_x_pos = 0;
+            }
+            else if (rigidbody.position.x >= -1 && rigidbody.position.x < 1)
+            {
+                next_x_pos = 2;
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.A))
+        {
+            animator.SetBool("Left", true);
+            
+            if (rigidbody.position.x >= 1 && rigidbody.position.x < 3)
+            {
+                next_x_pos = 0;
+            }
+            else if (rigidbody.position.x >= -1 && rigidbody.position.x < 1)
+            {
+                next_x_pos = -2;
+            }
         }
     }
 
@@ -56,7 +87,20 @@ public class PlayerMovement : MonoBehaviour
                 rigidbody.MovePosition(rigidbody.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude);
             else 
                 rigidbody.MovePosition(rigidbody.position + new Vector3(0,1.5f,2) * animator.deltaPosition.magnitude);
-
+        }
+        else if (animator.GetBool("Right"))
+        {
+            if (rigidbody.position.x < next_x_pos) 
+                rigidbody.MovePosition(rigidbody.position + new Vector3(1,0,1.5f) * animator.deltaPosition.magnitude);
+            else
+                animator.SetBool("Right",false);
+        }
+        else if (animator.GetBool("Left"))
+        {
+            if (rigidbody.position.x > next_x_pos) 
+                rigidbody.MovePosition(rigidbody.position + new Vector3(-1,0,1.5f) * animator.deltaPosition.magnitude);
+            else
+                animator.SetBool("Left",false);
         }
         else
             rigidbody.MovePosition(rigidbody.position + Vector3.forward * animator.deltaPosition.magnitude);
