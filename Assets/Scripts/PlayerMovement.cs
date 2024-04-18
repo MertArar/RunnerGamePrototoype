@@ -7,18 +7,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
-    private Rigidbody rigidbody;
+    private Rigidbody rb;
     private int next_x_pos;
     private bool Left, Right;
     
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Space))
@@ -40,30 +37,31 @@ public class PlayerMovement : MonoBehaviour
             else 
                 Right = true;
                 
-            if (rigidbody.position.x >= -3 && rigidbody.position.x < -1)
+            if (rb.position.x >= -3 && rb.position.x < -1)
             {
                 next_x_pos = 0;
             }
-            else if (rigidbody.position.x >= -1 && rigidbody.position.x < 1)
+            else if (rb.position.x >= -1 && rb.position.x < 1)
             {
                 next_x_pos = 2;
             }
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
-            animator.SetBool("Left", true);
-            
-            if (rigidbody.position.x >= 1 && rigidbody.position.x < 3)
+            if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
+                animator.SetBool("Left", true);
+            else
+                Left = true;
+            if (rb.position.x >= 1 && rb.position.x < 3)
             {
                 next_x_pos = 0;
             }
-            else if (rigidbody.position.x >= -1 && rigidbody.position.x < 1)
+            else if (rb.position.x >= -1 && rb.position.x < 1)
             {
                 next_x_pos = -2;
             }
         }
     }
-
     
     //Animation events
     void ToggleOff(string Name)
@@ -84,25 +82,41 @@ public class PlayerMovement : MonoBehaviour
         if (animator.GetBool("Jump"))
         {
             if (isJumpDown)
-                rigidbody.MovePosition(rigidbody.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude);
+                rb.MovePosition(rb.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude);
             else 
-                rigidbody.MovePosition(rigidbody.position + new Vector3(0,1.5f,2) * animator.deltaPosition.magnitude);
+                rb.MovePosition(rb.position + new Vector3(0,1.5f,2) * animator.deltaPosition.magnitude);
         }
         else if (animator.GetBool("Right"))
         {
-            if (rigidbody.position.x < next_x_pos) 
-                rigidbody.MovePosition(rigidbody.position + new Vector3(1,0,1.5f) * animator.deltaPosition.magnitude);
+            if (rb.position.x < next_x_pos) 
+                rb.MovePosition(rb.position + new Vector3(1,0,1.5f) * animator.deltaPosition.magnitude);
             else
                 animator.SetBool("Right",false);
         }
         else if (animator.GetBool("Left"))
         {
-            if (rigidbody.position.x > next_x_pos) 
-                rigidbody.MovePosition(rigidbody.position + new Vector3(-1,0,1.5f) * animator.deltaPosition.magnitude);
+            if (rb.position.x > next_x_pos) 
+                rb.MovePosition(rb.position + new Vector3(-1,0,1.5f) * animator.deltaPosition.magnitude);
             else
                 animator.SetBool("Left",false);
         }
         else
-            rigidbody.MovePosition(rigidbody.position + Vector3.forward * animator.deltaPosition.magnitude);
+            rb.MovePosition(rb.position + Vector3.forward * animator.deltaPosition.magnitude);
+
+        if (Left)
+        {
+            if (rb.position.x > next_x_pos)
+                rb.MovePosition(rb.position + new Vector3(-1, 0, 0) * animator.deltaPosition.magnitude);
+            else
+                Left = false;
+        }
+
+        else if (Right)
+        {
+            if (rb.position.x < next_x_pos)
+                rb.MovePosition(rb.position + new Vector3(1, 0, 0) * animator.deltaPosition.magnitude);
+            else
+                Right = false;
+        }
     }
 }
