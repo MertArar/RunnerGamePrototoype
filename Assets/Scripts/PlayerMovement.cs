@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private int next_x_pos;
     private bool Left, Right;
-    
+    public static int currentTile = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
