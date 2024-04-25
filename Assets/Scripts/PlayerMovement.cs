@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
+    public float playerSpeed = 1f;
     private int next_x_pos;
     private bool Left, Right;
     public static int currentTile = 0;
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("Left",false);
         }
         else
-            rb.MovePosition(rb.position + Vector3.forward * animator.deltaPosition.magnitude);
+            rb.MovePosition(rb.position + Vector3.forward * animator.deltaPosition.magnitude * playerSpeed);
 
         if (Left)
         {
