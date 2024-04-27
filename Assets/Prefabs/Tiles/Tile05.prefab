@@ -480,7 +480,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6386915044055059657}
-  - component: {fileID: 6636690970043634995}
   - component: {fileID: 439158933602797303}
   m_Layer: 0
   m_Name: Tile05
@@ -517,24 +516,6 @@ Transform:
   - {fileID: 5092285600567313114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6636690970043634995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5212906982726544394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2adc842f85054073b2e9ec9363524a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 5212906982726544394}
 --- !u!65 &439158933602797303
 BoxCollider:
   m_ObjectHideFlags: 0

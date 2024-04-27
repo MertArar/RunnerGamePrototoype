@@ -8,20 +8,19 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
-    private float playerSpeed = 1.5f; // Başlangıç hızı 1.5 olarak ayarlandı
+    [SerializeField] private float playerSpeed = 1.5f; 
     private int next_x_pos;
     private bool Left, Right;
     public static int currentTile = 0;
-    private float speedIncreaseInterval = 15f; // Hız artışı aralığı (saniye)
-    private float speedIncreaseAmount = 0.2f; // Hız artış miktarı
-    private float maxSpeed = 10f; // Maksimum hız
+    private float speedIncreaseInterval = 15f; 
+    private float speedIncreaseAmount = 0.2f; 
+    private float maxSpeed = 10f; 
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
-        // Hız artışını düzenli aralıklarla başlat
         StartCoroutine(IncreaseSpeedRoutine());
     }
 
@@ -111,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // Karakterin hızını maksimum hıza sınırla
+           
             float currentSpeed = Mathf.Min(playerSpeed, maxSpeed);
             rb.MovePosition(rb.position + Vector3.forward * animator.deltaPosition.magnitude * currentSpeed);
         }
@@ -133,13 +132,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // Hız artışını düzenli aralıklarla kontrol etmek için rutin
+  
     IEnumerator IncreaseSpeedRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(speedIncreaseInterval);
-            playerSpeed += speedIncreaseAmount; // Hızı artır
+            playerSpeed += speedIncreaseAmount; 
         }
     }
 }
