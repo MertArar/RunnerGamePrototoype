@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
+    [SerializeField] private GameObject player;
     private Rigidbody rb;
     [SerializeField] private float playerSpeed = 1.5f; 
     private int next_x_pos;
@@ -14,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public static int currentTile = 0;
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
-    private float maxSpeed = 10f; 
+    private float maxSpeed = 10f;
+    private bool canMove = true;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Jump", true);
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) && canMove == true)
         {
             if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
                 animator.SetBool("Right", true);
@@ -53,8 +55,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 next_x_pos = 2;
             }
+
+            StartCoroutine(ToRight(next_x_pos));
+
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.A) && canMove == true)
         {
             if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
                 animator.SetBool("Left", true);
@@ -67,10 +72,58 @@ public class PlayerMovement : MonoBehaviour
             else if (rb.position.x >= -1 && rb.position.x < 1)
             {
                 next_x_pos = -2;
+                
             }
+
+            
+            StartCoroutine(ToLeft(next_x_pos));
+            
         }
     }
+    IEnumerator ToLeft(int next_x_pos)
+    {
+        canMove = false;
 
+        float timer = 0.0125f;
+        yield return new WaitForSeconds(timer);
+        transform.position = new Vector3(this.next_x_pos + 0.8f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos + 0.6f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos + 0.4f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos + 0.2f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos, transform.position.y, transform.position.z + (playerSpeed/625)*100);
+
+        canMove = true;
+    }
+    IEnumerator ToRight(int next_x_pos)
+    {
+        canMove = false;
+
+        float timer = 0.0125f;
+        yield return new WaitForSeconds(timer);
+        transform.position = new Vector3(this.next_x_pos - 0.8f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos - 0.6f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos - 0.4f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos - 0.2f, transform.position.y, transform.position.z);
+        yield return new WaitForSeconds(timer);
+
+        transform.position = new Vector3(this.next_x_pos, transform.position.y, transform.position.z + (playerSpeed / 625)*100);
+
+        canMove = true;
+    }
     //Animation events
     void ToggleOff(string Name)
     {
@@ -110,7 +163,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-           
             float currentSpeed = Mathf.Min(playerSpeed, maxSpeed);
             rb.MovePosition(rb.position + Vector3.forward * animator.deltaPosition.magnitude * currentSpeed);
         }
@@ -138,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(speedIncreaseInterval);
-            playerSpeed += speedIncreaseAmount; 
+            playerSpeed += speedIncreaseAmount;
         }
     }
 }
