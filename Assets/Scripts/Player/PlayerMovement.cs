@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private float maxSpeed = 10f;
     private bool canMove = true;
     static public bool currentlyMove = false;
+    
+    public AudioSource slideFX;
+    public AudioSource jumpFX;
+
 
     void Start()
     {
@@ -36,10 +40,12 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.S))
             {
                 animator.SetBool("Slide", true);
+                slideFX.Play();
             }
             else if (Input.GetKeyUp(KeyCode.W))
             {
                 animator.SetBool("Jump", true);
+                jumpFX.Play();
             }
             else if (Input.GetKeyUp(KeyCode.D) && canMove == true)
             {
