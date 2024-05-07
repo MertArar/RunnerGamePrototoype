@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: bb2915e92d1d54df9887743c5b3d5d8e
+guid: db1ebd3baae6945f98ef98b9841cdd7e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -77,7 +77,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - cda0fbab824714b9885a170bead6af2d
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

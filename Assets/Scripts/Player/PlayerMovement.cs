@@ -6,18 +6,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Animator animator;
+    [SerializeField] private float playerSpeed = 1.5f;
+    [SerializeField] private float jumpingSpeed = 1.7f;
+    [SerializeField] private float slidingSpeed = 1.7f;
     [SerializeField] private GameObject player;
+    
+    
+    private Animator animator;
     private Rigidbody rb;
-    [SerializeField] private float playerSpeed = 1.5f; 
     private int next_x_pos;
     private bool Left, Right;
     public static int currentTile = 0;
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
     private float maxSpeed = 10f;
+    
     private bool canMove = true;
     static public bool currentlyMove = false;
+    private bool isJumpDown = false;
+    private bool isSlidingUp = false;
     
     public AudioSource slideFX;
     public AudioSource jumpFX;
@@ -140,12 +147,15 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(Name, false);
         isJumpDown = false;
     }
-
-    private bool isJumpDown = false;
-
+    
     void JumpDown()
     {
         isJumpDown = true;
+    }
+
+    void SlideUp()
+    {
+        isSlidingUp = true;
     }
 
     private void OnAnimatorMove()
@@ -153,10 +163,19 @@ public class PlayerMovement : MonoBehaviour
         if (animator.GetBool("Jump"))
         {
             if (isJumpDown)
-                rb.MovePosition(rb.position + new Vector3(0, 0, 2) * animator.deltaPosition.magnitude);
+                rb.MovePosition(rb.position + new Vector3(0, 0, 2) * animator.deltaPosition.magnitude * jumpingSpeed);
             else
-                rb.MovePosition(rb.position + new Vector3(0, 1.5f, 2) * animator.deltaPosition.magnitude);
+                rb.MovePosition(rb.position + new Vector3(0, 1.5f, 2) * animator.deltaPosition.magnitude * jumpingSpeed);
         }
+        
+        else if (animator.GetBool("Slide"))
+        {
+            if (isSlidingUp)
+                rb.MovePosition(rb.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude * slidingSpeed);
+            else
+                rb.MovePosition(rb.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude * slidingSpeed);
+        }
+        
         else if (animator.GetBool("Right"))
         {
             if (rb.position.x < next_x_pos)
@@ -194,7 +213,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-  
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obs"))
+        {
+            animator.SetBool("Dead", true);
+        }
+    }
+
     IEnumerator IncreaseSpeedRoutine()
     {
         while (true)
