@@ -9,23 +9,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerSpeed = 1.5f;
     [SerializeField] private float jumpingSpeed = 1.7f;
     [SerializeField] private float slidingSpeed = 1.7f;
+    [SerializeField] public float swipeThreshold = 50f;
     [SerializeField] private GameObject player;
     
     
     private Animator animator;
     private Rigidbody rb;
-    private int next_x_pos;
-    private bool Left, Right;
+    
     public static int currentTile = 0;
+    private int next_x_pos;
+    private float maxSpeed = 10f;
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
-    private float maxSpeed = 10f;
     
-    private bool canMove = true;
     static public bool currentlyMove = false;
+    private bool Left, Right;
+    private bool canMove = true;
     private bool isJumpDown = false;
     private bool isSlidingUp = false;
-    
+    private bool swipeStarted;
+
+    private Vector2 startPoint;
     public AudioSource slideFX;
     public AudioSource jumpFX;
 
@@ -41,9 +45,77 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         animator.SetBool("Run", true);
+        swipeStarted = false;
+        
         if (currentlyMove == true)
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                swipeStarted = true;
+                startPoint = Input.mousePosition;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                swipeStarted = false;
+                Vector2 endPoint = Input.mousePosition;
+                float swipeDistance = (endPoint - startPoint).magnitude;
+
+                if (swipeDistance >= swipeThreshold)
+                {
+                    Vector2 swipeDirection = endPoint - startPoint;
+                    swipeDirection.Normalize();
+
+                    if (swipeDirection.x < -0.5f && Mathf.Abs(swipeDirection.y) < 0.5 && canMove == true)
+                    {
+                        if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
+                            animator.SetBool("Left", true);
+                        else
+                            Left = true;
+                        if (rb.position.x >= 1 && rb.position.x < 3)
+                        {
+                            next_x_pos = 0;
+                        }
+                        else if (rb.position.x >= -1 && rb.position.x < 1)
+                        {
+                            next_x_pos = -2;
+                
+                        }
+                        StartCoroutine(ToLeft(next_x_pos));
+                    }
+                    else if (swipeDirection.x > 0.5f && Mathf.Abs(swipeDirection.y) < 0.5f && canMove == true)
+                    {
+                        if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
+                            animator.SetBool("Right", true);
+                        else
+                            Right = true;
+
+                        if (rb.position.x >= -3 && rb.position.x < -1)
+                        {
+                            next_x_pos = 0;
+                        }
+                        else if (rb.position.x >= -1 && rb.position.x < 1)
+                        {
+                            next_x_pos = 2;
+                        }
+
+                        StartCoroutine(ToRight(next_x_pos));
+
+                    }
+                    else if (swipeDirection.y > 0.5f && Mathf.Abs(swipeDirection.x) < 0.5f)
+                    {
+                        animator.SetBool("Jump", true);
+                        jumpFX.Play();
+                    }
+                    else if (swipeDirection.y < -0.5f && Mathf.Abs(swipeDirection.x) < 0.5f)
+                    {
+                        animator.SetBool("Slide", true);
+                        slideFX.Play();
+                    }
+                }
+                
+            }
             
+            /*
             if (Input.GetKeyUp(KeyCode.S))
             {
                 animator.SetBool("Slide", true);
@@ -88,14 +160,10 @@ public class PlayerMovement : MonoBehaviour
                     next_x_pos = -2;
                 
                 }
-
-            
                 StartCoroutine(ToLeft(next_x_pos));
-            
-            }
+            }*/
         }
         
-         
     }
     IEnumerator ToLeft(int next_x_pos)
     {
