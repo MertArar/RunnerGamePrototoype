@@ -165,7 +165,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1034453453376281696}
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeCoin: {fileID: 4991868280604128920}
+  m_collider: {fileID: 1638659099694147184}
   StartPos: {fileID: 1034453453376281696}
   EndPos: {fileID: 2395162304897270646}
 --- !u!65 &1638659099694147184
@@ -207,8 +208,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8, y: 8, z: 5}
-  m_Center: {x: 0, y: 4, z: -5}
+  m_Size: {x: 8, y: 8, z: 1}
+  m_Center: {x: 0, y: 4, z: -30}
 --- !u!1 &8361154854425122319
 GameObject:
   m_ObjectHideFlags: 0

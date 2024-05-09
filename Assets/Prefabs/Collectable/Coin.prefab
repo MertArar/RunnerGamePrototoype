@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7683052948977764196}
   - component: {fileID: 5157077068840993722}
   - component: {fileID: 4516634453860786898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinSound: {fileID: 8300000, guid: cd97554a60c334efbb985f239b8cf0cf, type: 3}
+  t: -1
 --- !u!114 &4516634453860786898
 MonoBehaviour:
   m_ObjectHideFlags: 0

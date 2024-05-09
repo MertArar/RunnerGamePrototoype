@@ -6,13 +6,18 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject planeCoin;
+    [SerializeField] private BoxCollider m_collider;
+    
     public Transform StartPos;
     public Transform EndPos;
 
     private float currentCoinPosition;
+    
     void Start()
     {
         planeCoin.SetActive(false);
+        m_collider.center = new Vector3(m_collider.center.x, m_collider.center.y, m_collider.center.z / transform.localScale.z);
+        m_collider.size = new Vector3(m_collider.size.x, m_collider.size.y, m_collider.size.z / transform.localScale.z);
     }
 
     private void OnTriggerEnter(Collider other)

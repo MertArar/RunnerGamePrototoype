@@ -231,17 +231,17 @@ public class PlayerMovement : MonoBehaviour
         if (animator.GetBool("Jump"))
         {
             if (isJumpDown)
-                rb.MovePosition(rb.position + new Vector3(0, 0, 2) * animator.deltaPosition.magnitude * jumpingSpeed);
+                rb.MovePosition(rb.position + new Vector3(0, 0, 2.5f) * animator.deltaPosition.magnitude * jumpingSpeed);
             else
-                rb.MovePosition(rb.position + new Vector3(0, 1.5f, 2) * animator.deltaPosition.magnitude * jumpingSpeed);
+                rb.MovePosition(rb.position + new Vector3(0, 1.5f, 2.5f) * animator.deltaPosition.magnitude * jumpingSpeed);
         }
         
         else if (animator.GetBool("Slide"))
         {
             if (isSlidingUp)
-                rb.MovePosition(rb.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude * slidingSpeed);
+                rb.MovePosition(rb.position + new Vector3(0,0,2.2f) * animator.deltaPosition.magnitude * slidingSpeed);
             else
-                rb.MovePosition(rb.position + new Vector3(0,0,2) * animator.deltaPosition.magnitude * slidingSpeed);
+                rb.MovePosition(rb.position + new Vector3(0,0,2.2f) * animator.deltaPosition.magnitude * slidingSpeed);
         }
         
         else if (animator.GetBool("Right"))
