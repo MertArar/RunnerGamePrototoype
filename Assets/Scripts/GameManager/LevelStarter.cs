@@ -12,26 +12,59 @@ public class LevelStarter : MonoBehaviour
 
     public AudioSource readyFX;
     public AudioSource goFX;
-    
+
+    bool countingStarted = false;
+
     void Start()
     {
+        countDown3.SetActive(false);
+        countDown2.SetActive(false);
+        countDown1.SetActive(false);
+        countDownGo.SetActive(false);
+        fadeIn.SetActive(false);
+    }
+
+    void Update()
+    {
+       
+        if (Input.GetKeyUp(KeyCode.Space) && !countingStarted)
+        {
+            countingStarted = true;
+            StartCoroutine(StartCountingAfterDelay(1f));
+        }
+    }
+
+    IEnumerator StartCountingAfterDelay(float delay)
+    {
+        
+        yield return new WaitForSeconds(delay);
         StartCoroutine(CountSequence());
     }
 
     IEnumerator CountSequence()
     {
-        yield return new WaitForSeconds(1.5f);
+       
         countDown3.SetActive(true);
         readyFX.Play();
         yield return new WaitForSeconds(1);
+
+        
+        countDown3.SetActive(false);
         countDown2.SetActive(true);
         readyFX.Play();
         yield return new WaitForSeconds(1);
+
+        
+        countDown2.SetActive(false);
         countDown1.SetActive(true);
         readyFX.Play();
         yield return new WaitForSeconds(1);
+
+        
+        countDown1.SetActive(false);
         countDownGo.SetActive(true);
         goFX.Play();
+        yield return new WaitForSeconds(1);
 
         PlayerMovement.currentlyMove = true;
     }

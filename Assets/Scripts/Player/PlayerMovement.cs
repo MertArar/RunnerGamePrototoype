@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 1.5f;
-    [SerializeField] private float jumpingSpeed = 1.7f;
-    [SerializeField] private float slidingSpeed = 1.7f;
+    [SerializeField] private float playerSpeed = 2f;
+    [SerializeField] private float jumpingSpeed = 1.2f;
+    [SerializeField] private float slidingSpeed = 1.1f;
     [SerializeField] public float swipeThreshold = 50f;
     [SerializeField] private GameObject player;
-    
+    [SerializeField] private GameObject startScreen;
     
     private Animator animator;
     private Rigidbody rb;
     
     public static int currentTile = 0;
     private int next_x_pos;
-    private float maxSpeed = 10f;
+    private float maxSpeed = 8f;
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
     
@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 startPoint;
     public AudioSource slideFX;
     public AudioSource jumpFX;
+    
+    
 
 
     void Start()
@@ -44,9 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("Run", true);
-        swipeStarted = false;
-        
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            startScreen.SetActive(false);
+            animator.SetBool("Run", true);
+            swipeStarted = false;
+        }
         if (currentlyMove == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -103,11 +108,16 @@ public class PlayerMovement : MonoBehaviour
                     }
                     else if (swipeDirection.y > 0.5f && Mathf.Abs(swipeDirection.x) < 0.5f)
                     {
+                        rb.position = new Vector3(next_x_pos, transform.position.y, transform.position.z);
+                        animator.SetBool("Slide", false);
+                        animator.SetBool("Left", false);
+                        animator.SetBool("Right", false);
                         animator.SetBool("Jump", true);
                         jumpFX.Play();
                     }
                     else if (swipeDirection.y < -0.5f && Mathf.Abs(swipeDirection.x) < 0.5f)
                     {
+                        animator.SetBool("Jump", false);
                         animator.SetBool("Slide", true);
                         slideFX.Play();
                     }
@@ -249,14 +259,22 @@ public class PlayerMovement : MonoBehaviour
             if (rb.position.x < next_x_pos)
                 rb.MovePosition(rb.position + new Vector3(1, 0, 1.5f) * animator.deltaPosition.magnitude);
             else
+            {
+                rb.position = new Vector3(next_x_pos, transform.position.y, transform.position.z);
                 animator.SetBool("Right", false);
+            }
+                
         }
         else if (animator.GetBool("Left"))
         {
             if (rb.position.x > next_x_pos)
                 rb.MovePosition(rb.position + new Vector3(-1, 0, 1.5f) * animator.deltaPosition.magnitude);
             else
+            {
+                rb.position = new Vector3(next_x_pos, transform.position.y, transform.position.z);
                 animator.SetBool("Left", false);
+            }
+                
         }
         else
         {
