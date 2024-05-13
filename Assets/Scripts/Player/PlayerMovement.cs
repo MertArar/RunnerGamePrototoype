@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,10 +34,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 startPoint;
     public AudioSource slideFX;
     public AudioSource jumpFX;
+    public static CollectableControl collectableControl;
+    public GameObject gameOver;
     
-    
-
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -46,6 +47,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (animator.GetBool("Dead"))
+        {
+            PlayerPrefs.SetInt("CoinsCollected", CoinsCollected);
+            gameOver.SetActive(true);
+        }
+        
         if (Input.GetKeyUp(KeyCode.Space))
         {
             startScreen.SetActive(false);
@@ -122,58 +129,8 @@ public class PlayerMovement : MonoBehaviour
                         slideFX.Play();
                     }
                 }
-                
             }
-            
-            /*
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                animator.SetBool("Slide", true);
-                slideFX.Play();
-            }
-            else if (Input.GetKeyUp(KeyCode.W))
-            {
-                animator.SetBool("Jump", true);
-                jumpFX.Play();
-            }
-            else if (Input.GetKeyUp(KeyCode.D) && canMove == true)
-            {
-                if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
-                    animator.SetBool("Right", true);
-                else
-                    Right = true;
-
-                if (rb.position.x >= -3 && rb.position.x < -1)
-                {
-                    next_x_pos = 0;
-                }
-                else if (rb.position.x >= -1 && rb.position.x < 1)
-                {
-                    next_x_pos = 2;
-                }
-
-                StartCoroutine(ToRight(next_x_pos));
-
-            }
-            else if (Input.GetKeyUp(KeyCode.A) && canMove == true)
-            {
-                if (!animator.GetBool("Jump") && !animator.GetBool("Slide"))
-                    animator.SetBool("Left", true);
-                else
-                    Left = true;
-                if (rb.position.x >= 1 && rb.position.x < 3)
-                {
-                    next_x_pos = 0;
-                }
-                else if (rb.position.x >= -1 && rb.position.x < 1)
-                {
-                    next_x_pos = -2;
-                
-                }
-                StartCoroutine(ToLeft(next_x_pos));
-            }*/
         }
-        
     }
     IEnumerator ToLeft(int next_x_pos)
     {
@@ -219,7 +176,6 @@ public class PlayerMovement : MonoBehaviour
 
         canMove = true;
     }
-    //Animation events
     void ToggleOff(string Name)
     {
         animator.SetBool(Name, false);
@@ -307,6 +263,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private int CoinsCollected;
+    [SerializeField] private TextMeshProUGUI CoinsText;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            CoinsCollected++;
+            CoinsText.text = CoinsCollected.ToString();
+        }
+    }
+
     IEnumerator IncreaseSpeedRoutine()
     {
         while (true)
@@ -316,3 +284,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+ 
