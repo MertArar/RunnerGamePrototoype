@@ -32,7 +32,7 @@ public class TimeManager : MonoBehaviour
     public int Days
     { get { return days; } set { days = value; } }
 
-    private float tempSecond;
+    [SerializeField] private float tempSecond;
 
     public void Update()
     {

@@ -15,12 +15,14 @@ public class LevelDistance : MonoBehaviour
     void Start()
     {
         disDisplay.SetActive(true);
+        // Oyun başladığında mesafe değerini sıfırla
+        disRun = 0;
         UpdateDistanceDisplay();
     }
 
     void Update()
     {
-        if (!gameOverMenu.activeSelf && !countingStarted && Input.GetKeyUp(KeyCode.Space))
+        if (!gameOverMenu.activeSelf && Input.GetKeyUp(KeyCode.Space) && !countingStarted)
         {
             countingStarted = true;
             StartCoroutine(StartCountingDistance());
@@ -32,10 +34,15 @@ public class LevelDistance : MonoBehaviour
         while (true)
         {
             disRun += 1;
-            UpdateDistanceDisplay(); 
+            UpdateDistanceDisplay();
 
             if (gameOverMenu.activeSelf)
+            {
+                // Karakter öldüğünde mesafe değerini PlayerPrefs'e kaydet
+                PlayerPrefs.SetInt("DistanceRun", disRun);
+                PlayerPrefs.Save();
                 yield break;
+            }
 
             yield return new WaitForSeconds(disDelay);
         }
