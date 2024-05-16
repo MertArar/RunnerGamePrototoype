@@ -261,7 +261,13 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Dead", true);
         }
+        if (collision.collider.CompareTag("FallDamage"))
+        {
+            animator.SetBool("FallDead", true);
+        }
     }
+    
+   
 
     private int CoinsCollected;
     [SerializeField] private TextMeshProUGUI CoinsText;
