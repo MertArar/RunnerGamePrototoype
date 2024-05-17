@@ -15,7 +15,6 @@ public class LevelDistance : MonoBehaviour
     void Start()
     {
         disDisplay.SetActive(true);
-        // Oyun başladığında mesafe değerini sıfırla
         disRun = 0;
         UpdateDistanceDisplay();
     }
@@ -38,7 +37,6 @@ public class LevelDistance : MonoBehaviour
 
             if (gameOverMenu.activeSelf)
             {
-                // Karakter öldüğünde mesafe değerini PlayerPrefs'e kaydet
                 PlayerPrefs.SetInt("DistanceRun", disRun);
                 PlayerPrefs.Save();
                 yield break;

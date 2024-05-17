@@ -27,7 +27,7 @@ public class TrackManager : MonoBehaviour
         else
             randomTile = Random.Range(PlayerMovement.currentTile + 1, Tiles.Capacity);
         
-        Tiles[randomTile].transform.position = new Vector3(0, 0, Tiles[PlayerMovement.currentTile].transform.position.z + 99.5f);
+        Tiles[randomTile].transform.position = new Vector3(0, 0, Tiles[PlayerMovement.currentTile].transform.position.z + 101f);
         PlayerMovement.currentTile = randomTile;
     }
 }

@@ -47,11 +47,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetBool("Dead"))
+        if (animator.GetBool("Dead") || animator.GetBool("FallDead"))
         {
             PlayerPrefs.SetInt("CoinsCollected", CoinsCollected);
-            gameOver.SetActive(true);
+            StartCoroutine(waitGameOver());
         }
+        
+        
         
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -132,6 +134,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    IEnumerator waitGameOver()
+    {
+        float timer = 1.5f;
+        yield return new WaitForSeconds(timer);
+        gameOver.SetActive(true);
+    }
+    
     IEnumerator ToLeft(int next_x_pos)
     {
         canMove = false;
@@ -194,7 +204,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        if (animator.GetBool("Jump"))
+        if (animator.GetBool("FallDead"))
+        {
+            rb.MovePosition(rb.position + Vector3.down * animator.deltaPosition.magnitude);
+        }
+        
+        else if (animator.GetBool("Jump"))
         {
             if (isJumpDown)
                 rb.MovePosition(rb.position + new Vector3(0, 0, 2.5f) * animator.deltaPosition.magnitude * jumpingSpeed);
@@ -266,8 +281,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("FallDead", true);
         }
     }
+
+    [SerializeField] private GameObject camObject;
     
-   
 
     private int CoinsCollected;
     [SerializeField] private TextMeshProUGUI CoinsText;
@@ -278,6 +294,12 @@ public class PlayerMovement : MonoBehaviour
         {
             CoinsCollected++;
             CoinsText.text = CoinsCollected.ToString();
+        }
+
+        if (other.CompareTag("FallDamage"))
+        {
+            camObject.transform.parent = null;
+            animator.SetBool("FallDead", true);
         }
     }
 
