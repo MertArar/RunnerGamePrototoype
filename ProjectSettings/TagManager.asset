@@ -8,6 +8,8 @@ TagManager:
   - Magnet
   - Coin
   - FallDamage
+  - City
+  - Desert
   layers:
   - Default
   - TransparentFX

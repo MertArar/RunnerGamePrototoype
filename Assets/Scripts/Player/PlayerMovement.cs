@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource jumpFX;
     public static CollectableControl collectableControl;
     public GameObject gameOver;
+    public GameObject dustEffect;
     
     void Start()
     {
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             startScreen.SetActive(false);
             animator.SetBool("Run", true);
+            dustEffect.SetActive(true);
             swipeStarted = false;
         }
         if (currentlyMove == true)

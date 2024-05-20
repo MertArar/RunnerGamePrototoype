@@ -2190,6 +2190,7 @@ MonoBehaviour:
   slideFX: {fileID: 1608426265}
   jumpFX: {fileID: 801576616}
   gameOver: {fileID: 479858108}
+  dustEffect: {fileID: 5298750483750956011, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
   camObject: {fileID: 963194225}
   CoinsText: {fileID: 1763988907}
 --- !u!1 &412528936
@@ -3926,6 +3927,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4020,6 +4022,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curveStrength: 0.01
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38463647d087a4ca28d6160eeb15508e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bendOn: 1
+  m_curveOrigin: {fileID: 963194228}
+  m_referenceDirection: {fileID: 963194228}
+  m_curvature: 0
+  m_xScale: 0.5
+  m_zScale: 0.6
+  m_flatMargin: 0
+  m_horizonWaves: 0
+  m_horizonWaveFrequency: 0
 --- !u!1 &993388005
 GameObject:
   m_ObjectHideFlags: 0
@@ -6775,6 +6798,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805203537}
   m_CullTransparentMesh: 1
+--- !u!1 &1870937139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870937141}
+  - component: {fileID: 1870937140}
+  m_Layer: 0
+  m_Name: ObsGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1870937140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870937139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67915bcbb1b845e5a817431668a5639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefabs:
+  - {fileID: 4919031620872912811, guid: 3f132fe4cb8dc4805b0c9db2f6ed6b8c, type: 3}
+  - {fileID: 6408012592935498600, guid: 1759e53b7e0424fbe87efe5f7f208fc2, type: 3}
+  - {fileID: 1852243467160331526, guid: 66f6d04e10744456aa8d15ff49e0da98, type: 3}
+  - {fileID: 909743933878423148, guid: d4d45c0bef7184c26afb7b9627301f63, type: 3}
+  coinPrefab: {fileID: 8303948872752521876, guid: 2c1848c169ea84b848d110272f66544f, type: 3}
+  spawnDistance: 50
+  playerTransform: {fileID: 409316565}
+  tileTags:
+  - City
+  - Desert
+  minObstacleDistance: 15
+  coinSpacing: 1
+  minCoinCount: 7
+  maxCoinCount: 15
+--- !u!4 &1870937141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870937139}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899148088
 GameObject:
   m_ObjectHideFlags: 0
@@ -7188,6 +7270,7 @@ MonoBehaviour:
   slideFX: {fileID: 0}
   jumpFX: {fileID: 0}
   gameOver: {fileID: 0}
+  dustEffect: {fileID: 0}
   camObject: {fileID: 0}
   CoinsText: {fileID: 0}
 --- !u!1 &2012316770
@@ -7945,6 +8028,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6386915044055059657, guid: 7737930b74c31418ab57fb3521ef31e9, type: 3}
   m_PrefabInstance: {fileID: 3268968746045757214}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1445518076870683682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5298750483750956011, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_Name
+      value: dustEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4880955
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.9969344
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.14379692
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419996772737886065, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1de1096d346b4acc88b5fe0104ef662, type: 3}
 --- !u!4 &1995154392321271932 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8225925705817691879, guid: 76ed996401ff64fc79e31814c86663fd, type: 3}
@@ -8967,3 +9107,5 @@ SceneRoots:
   - {fileID: 482864290}
   - {fileID: 1380283685}
   - {fileID: 464735193}
+  - {fileID: 1445518076870683682}
+  - {fileID: 1870937141}
