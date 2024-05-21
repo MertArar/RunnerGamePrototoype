@@ -10,6 +10,7 @@ TagManager:
   - FallDamage
   - City
   - Desert
+  - NoCollider
   layers:
   - Default
   - TransparentFX
