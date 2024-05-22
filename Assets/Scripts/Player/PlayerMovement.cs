@@ -12,8 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpingSpeed = 1.2f;
     [SerializeField] private float slidingSpeed = 1.1f;
     [SerializeField] public float swipeThreshold = 50f;
+    [SerializeField] private TextMeshProUGUI CoinsText;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject startScreen;
+    [SerializeField] private GameObject camObject;
+
     
     private Animator animator;
     private Rigidbody rb;
@@ -23,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float maxSpeed = 8f;
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
+    private int CoinsCollected;
     
     static public bool currentlyMove = false;
     private bool Left, Right;
@@ -53,8 +57,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.SetInt("CoinsCollected", CoinsCollected);
             StartCoroutine(waitGameOver());
         }
-        
-        
         
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -238,6 +240,7 @@ public class PlayerMovement : MonoBehaviour
             }
                 
         }
+        
         else if (animator.GetBool("Left"))
         {
             if (rb.position.x > next_x_pos)
@@ -249,6 +252,7 @@ public class PlayerMovement : MonoBehaviour
             }
                 
         }
+        
         else
         {
             float currentSpeed = Mathf.Min(playerSpeed, maxSpeed);
@@ -283,13 +287,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("FallDead", true);
         }
     }
-
-    [SerializeField] private GameObject camObject;
     
-
-    private int CoinsCollected;
-    [SerializeField] private TextMeshProUGUI CoinsText;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))

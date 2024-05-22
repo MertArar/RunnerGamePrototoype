@@ -4618,6 +4618,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4999200000071008443}
     m_Modifications:
+    - target: {fileID: 764304880881380877, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0b03d53d9fcc2440db456ab0abfa50d5, type: 2}
     - target: {fileID: 6315637871347173610, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
       propertyPath: m_Name
       value: Ground
