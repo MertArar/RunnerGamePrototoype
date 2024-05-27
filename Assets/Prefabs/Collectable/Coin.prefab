@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 7683052948977764196}
   - component: {fileID: 5157077068840993722}
   - component: {fileID: 4673802578078898497}
-  - component: {fileID: 34051691591826099}
-  - component: {fileID: 6942445515437273266}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Coin
@@ -124,32 +122,6 @@ MonoBehaviour:
   coinSound: {fileID: 8300000, guid: cd97554a60c334efbb985f239b8cf0cf, type: 3}
   t: -1
 --- !u!114 &4673802578078898497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8303948872752521876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce89ff924c3bd446bb85c62afe1033ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 1
---- !u!114 &34051691591826099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8303948872752521876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce89ff924c3bd446bb85c62afe1033ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 1
---- !u!114 &6942445515437273266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
