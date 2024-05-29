@@ -104,6 +104,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &6647852017370994480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4313,13 +4319,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4999200000071008443}
     m_Modifications:
+    - target: {fileID: 559740346292892266, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 764304880881380877, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0b03d53d9fcc2440db456ab0abfa50d5, type: 2}
+      objectReference: {fileID: 2100000, guid: fbaf9fcd94bdf4e68bc0b82248c4aae0, type: 2}
+    - target: {fileID: 1932176052438160738, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998238227850003879, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6315637871347173610, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
       propertyPath: m_Name
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243236671452025633, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7265876931879574167, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4360,6 +4382,10 @@ PrefabInstance:
     - target: {fileID: 7265876931879574167, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529884122722716897, guid: fc7fc4196352a4bc6830e38f94f10a18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float speedIncreaseInterval = 15f; 
     private float speedIncreaseAmount = 0.2f; 
     private int CoinsCollected;
+    public int DistanceCollected;
     
     static public bool currentlyMove = false;
     private bool Left, Right;
@@ -250,7 +251,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.position = new Vector3(next_x_pos, transform.position.y, transform.position.z);
                 animator.SetBool("Left", false);
             }
-                
         }
         
         else

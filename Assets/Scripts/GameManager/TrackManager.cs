@@ -8,15 +8,6 @@ public class TrackManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> Tiles;
     int randomTile;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,8 +17,12 @@ public class TrackManager : MonoBehaviour
         }
         else
             randomTile = Random.Range(PlayerMovement.currentTile + 1, Tiles.Capacity);
-        
-        Tiles[randomTile].transform.position = new Vector3(0, 0, Tiles[PlayerMovement.currentTile].transform.position.z + 99.5f);
+
+        // Karakterin default yüksekliğini kullanarak yeni yolun yüksekliğini ayarla
+        float defaultHeight = 0f;
+        Vector3 newPosition = new Vector3(0, defaultHeight, Tiles[PlayerMovement.currentTile].transform.position.z + 100f);
+        Tiles[randomTile].transform.position = newPosition;
+
         PlayerMovement.currentTile = randomTile;
     }
 }
