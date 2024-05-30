@@ -18,7 +18,6 @@ public class TrackManager : MonoBehaviour
         else
             randomTile = Random.Range(PlayerMovement.currentTile + 1, Tiles.Capacity);
 
-        // Karakterin default yüksekliğini kullanarak yeni yolun yüksekliğini ayarla
         float defaultHeight = 0f;
         Vector3 newPosition = new Vector3(0, defaultHeight, Tiles[PlayerMovement.currentTile].transform.position.z + 100f);
         Tiles[randomTile].transform.position = newPosition;
