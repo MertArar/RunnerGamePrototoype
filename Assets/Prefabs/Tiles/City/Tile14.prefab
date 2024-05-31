@@ -287,8 +287,8 @@ Transform:
   m_GameObject: {fileID: 3178948970637053987}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.06, y: 0.8855, z: -37.317}
-  m_LocalScale: {x: 1.9865785, y: 0.845, z: 1}
+  m_LocalPosition: {x: -2.06, y: 0.8855, z: -37.5445}
+  m_LocalScale: {x: 1.9865785, y: 0.845, z: 0.4878371}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4126900187424908329}
@@ -517,8 +517,8 @@ Transform:
   m_GameObject: {fileID: 4329380777453202564}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.382, y: 1.5902, z: 55.9286}
-  m_LocalScale: {x: 1.24592, y: 2.123659, z: 1.941485}
+  m_LocalPosition: {x: 2.5797, y: 1.5902, z: 55.9286}
+  m_LocalScale: {x: 0.850465, y: 2.123659, z: 1.941485}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4126900187424908329}
@@ -659,8 +659,8 @@ Transform:
   m_GameObject: {fileID: 4758915261565479784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2637, y: 1.4985, z: 4.78}
-  m_LocalScale: {x: 1.2369901, y: 1.9401233, z: 2.4474843}
+  m_LocalPosition: {x: -2.3428, y: 1.4985, z: 4.9061}
+  m_LocalScale: {x: 1.0787791, y: 1.9401233, z: 2.0460966}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4126900187424908329}
@@ -851,6 +851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2472814515454993624}
   - component: {fileID: 5004601701965033449}
+  - component: {fileID: 8586072953804976971}
   m_Layer: 0
   m_Name: Tile14
   m_TagString: City
@@ -893,10 +894,31 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 8, y: 20, z: 1}
   m_Center: {x: 0, y: 4, z: 50}
+--- !u!65 &8586072953804976971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702459390047684603}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 32.2, y: 1, z: 100}
+  m_Center: {x: 0, y: -3.2, z: 50}
 --- !u!1 &7077577179143895874
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,8 +1015,8 @@ Transform:
   m_GameObject: {fileID: 8114585341814374287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.409, y: 1.4985, z: 4.588}
-  m_LocalScale: {x: 1.3749312, y: 1.9401233, z: 2.013146}
+  m_LocalPosition: {x: 2.5305, y: 1.4985, z: 4.5366}
+  m_LocalScale: {x: 1.1318433, y: 1.9401233, z: 1.9104755}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4126900187424908329}

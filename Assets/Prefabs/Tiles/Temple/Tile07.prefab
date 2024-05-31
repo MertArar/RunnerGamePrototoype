@@ -379,6 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812174573374254000}
   - component: {fileID: 4134692630789329853}
+  - component: {fileID: 2836069126602593673}
   m_Layer: 0
   m_Name: Tile07
   m_TagString: Untagged
@@ -433,10 +434,31 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 8, y: 20, z: 1}
   m_Center: {x: 0, y: 4, z: 50}
+--- !u!65 &2836069126602593673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326356592485745047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 32.2, y: 1, z: 100}
+  m_Center: {x: 0, y: -3.2, z: 50}
 --- !u!1 &7456539335105775864
 GameObject:
   m_ObjectHideFlags: 0

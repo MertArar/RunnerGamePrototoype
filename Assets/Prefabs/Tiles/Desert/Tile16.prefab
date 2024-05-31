@@ -1268,6 +1268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8399617205208714641}
   - component: {fileID: 4489470656647338651}
+  - component: {fileID: 6086427225531427067}
   m_Layer: 0
   m_Name: Tile16
   m_TagString: Desert
@@ -1320,10 +1321,31 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 8, y: 20, z: 1}
   m_Center: {x: 0, y: 4, z: 50}
+--- !u!65 &6086427225531427067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811435536721229508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 32.2, y: 1, z: 100}
+  m_Center: {x: 0, y: -3.2, z: 50}
 --- !u!1 &8873824282379235149
 GameObject:
   m_ObjectHideFlags: 0
